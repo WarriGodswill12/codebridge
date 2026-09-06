@@ -54,8 +54,12 @@ export function PageTransition() {
       blobCoverIn(panel, () => router.push(href));
     }
 
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
+    // Capture phase: Next's own <Link> click handler lives on the anchor
+    // itself and calls preventDefault() there before a bubble-phase
+    // listener on document would ever see the event, so intercepting on
+    // the way down is the only way to get in front of it.
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
   }, [mounted, router]);
 
   useEffect(() => {
@@ -93,7 +97,7 @@ export function PageTransition() {
     <div className="pointer-events-none fixed inset-0 z-90 overflow-hidden">
       <div
         ref={panelRef}
-        className="absolute inset-0 origin-bottom scale-y-0 bg-background"
+        className="absolute inset-0 origin-bottom scale-y-0 border border-black bg-background"
       />
     </div>,
     document.body
