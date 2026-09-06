@@ -9,6 +9,8 @@
  */
 
 import type * as leads from "../leads.js";
+import type * as projects from "../projects.js";
+import type * as seed from "../seed.js";
 
 import type {
   ApiFromModules,
@@ -18,6 +20,8 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   leads: typeof leads;
+  projects: typeof projects;
+  seed: typeof seed;
 }>;
 
 /**

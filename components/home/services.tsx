@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import type { OrbitalBadge } from "@/components/home/orbital-marquee";
+import { SplitHeading } from "@/components/motion/split-heading";
 
 const OrbitalMarquee = dynamic(
   () => import("@/components/home/orbital-marquee").then((m) => m.OrbitalMarquee),
@@ -26,9 +27,11 @@ export function Services() {
      
 
       <OrbitalMarquee badges={services}>
-        <h2 className="text-2xl leading-[1.2] font-medium text-balance sm:text-4xl lg:text-5xl">
-          Enterprise-grade software, without the enterprise price.
-        </h2>
+        <SplitHeading type="lines">
+          <h2 className="text-2xl leading-[1.2] font-medium text-balance sm:text-4xl lg:text-5xl">
+            Enterprise-grade software, without the enterprise price.
+          </h2>
+        </SplitHeading>
       </OrbitalMarquee>
     </section>
   );

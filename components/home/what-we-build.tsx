@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrambleIn } from "@/components/motion/scramble-in";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -91,7 +92,7 @@ export function WhatWeBuild() {
     >
       <div className="mx-auto max-w-5xl">
         <p className="text-xs font-medium tracking-[0.14em] text-(--page-muted-foreground) uppercase">
-          What we build
+          <ScrambleIn text="What we build" />
         </p>
 
         <p className="mt-6 max-w-3xl text-2xl leading-[1.35] font-medium sm:text-3xl lg:text-4xl">

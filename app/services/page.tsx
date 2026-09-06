@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
+import { ServicesHero } from "@/components/services/services-hero";
+import { ServiceList } from "@/components/services/service-list";
+import { ServicesCredentials } from "@/components/services/services-credentials";
+import { ServicesCta } from "@/components/services/services-cta";
 
 export const metadata: Metadata = {
   title: "Services",
-  description: "What Codebridge does.",
+  description:
+    "Client onboarding portals, SaaS MVPs, internal tools, security audits, booking systems, and AI feature integration, built by a senior engineering team.",
 };
 
 export default function ServicesPage() {
   return (
-    <main className="flex flex-1 items-center justify-center">
-      <h1 className="text-2xl font-semibold">Services</h1>
+    <main className="flex flex-1 flex-col">
+      <ServicesHero />
+      <ServiceList />
+      <ServicesCredentials />
+      <ServicesCta />
     </main>
   );
 }

@@ -87,6 +87,18 @@
   --page-background: var(--background);
   --page-foreground: var(--foreground);
   --page-muted-foreground: var(--muted-foreground);
+
+  /* matches the fixed header's actual rendered height at each
+     breakpoint — SmoothScrollProvider overwrites this precisely on
+     mount, this is just the pre-hydration fallback so content doesn't
+     render under the fixed header for a frame. */
+  --header-height: 61px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-height: 73px;
+  }
 }
 
 .dark {
@@ -136,6 +148,29 @@
   html {
     @apply font-sans;
   }
+  /* Raleway is loaded normal-weight only (no italic file) — without
+     this, the browser fakes a slant wherever `italic` is still applied
+     (headings, <em>s) via font-synthesis, which is exactly the look
+     that was rejected. */
+  .font-display,
+  .font-display em,
+  .font-display i {
+    font-synthesis-style: none;
+  }
+}
+
+/* draws an underline in from the left on hover instead of just
+   toggling color — used on plain-text nav links that have no other
+   hover treatment of their own. */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s ease;
+}
+.link-underline:hover {
+  background-size: 100% 1px;
 }
 
 @media (prefers-reduced-motion: reduce) {

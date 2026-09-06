@@ -13,6 +13,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Magnetic } from "@/components/motion/magnetic";
+import { Reveal } from "@/components/motion/reveal";
+import { ScrambleIn } from "@/components/motion/scramble-in";
+import { SplitHeading } from "@/components/motion/split-heading";
 import { cn } from "@/lib/utils";
 
 if (typeof window !== "undefined") {
@@ -88,12 +92,17 @@ export function Process() {
   return (
     <section ref={sectionRef} className="px-6 pt-4 pb-24 sm:pt-8 sm:pb-32 lg:px-10">
       <div className="mx-auto max-w-7xl">
-        <p className="text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase">
-          Our process
-        </p>
-        <h2 className="mt-4 max-w-2xl font-display text-3xl italic sm:text-4xl lg:text-5xl">
-          From first call to shipped product.
-        </h2>
+        <Reveal y={16}>
+          <ScrambleIn
+            text="Our process"
+            className="text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase"
+          />
+        </Reveal>
+        <SplitHeading delay={0.1}>
+          <h2 className="mt-4 max-w-2xl font-display text-3xl italic sm:text-4xl lg:text-5xl">
+            From first call to shipped product.
+          </h2>
+        </SplitHeading>
 
         <div ref={rowRef} className="mt-14 overflow-hidden">
           <div ref={gridRef} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -149,14 +158,16 @@ export function Process() {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <Button
-            render={<Link href="/contact" />}
-            nativeButton={false}
-            className="h-12 gap-2 rounded-full px-7 text-xs font-semibold tracking-widest uppercase"
-          >
-            Book a 15-min call
-            <ArrowRight className="size-4" />
-          </Button>
+          <Magnetic>
+            <Button
+              render={<Link href="/contact" />}
+              nativeButton={false}
+              className="h-12 gap-2 rounded-full px-7 text-xs font-semibold tracking-widest uppercase"
+            >
+              Book a 15-min call
+              <ArrowRight className="size-4" />
+            </Button>
+          </Magnetic>
         </div>
       </div>
     </section>

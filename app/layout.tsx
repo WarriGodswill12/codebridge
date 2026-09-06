@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Fraunces } from "next/font/google";
+import { Instrument_Sans, Geist_Mono, Raleway } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
+import { SmoothScrollProvider } from "@/components/motion/smooth-scroll-provider";
 import "./globals.css";
 
-const geistSans = Geist({
+const instrumentSans = Instrument_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
 });
@@ -15,11 +16,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const fraunces = Fraunces({
+const raleway = Raleway({
   variable: "--font-display",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT", "WONK"],
-  style: ["normal", "italic"],
+  style: ["normal"],
 });
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${instrumentSans.variable} ${geistMono.variable} ${raleway.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <div
@@ -43,8 +43,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
         <ConvexClientProvider>
           <SiteHeader />
-          {children}
-          <SiteFooter />
+          <SmoothScrollProvider>
+            {children}
+            <SiteFooter />
+          </SmoothScrollProvider>
         </ConvexClientProvider>
       </body>
     </html>
