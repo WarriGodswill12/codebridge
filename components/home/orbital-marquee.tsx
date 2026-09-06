@@ -132,7 +132,7 @@ export function OrbitalMarquee({ badges, children, className }: OrbitalMarqueePr
         className
       )}
     >
-      <div className="absolute top-1/2 left-1/2 z-10 max-w-45 -translate-x-1/2 -translate-y-1/2 text-center sm:max-w-sm lg:max-w-lg">
+      <div className="absolute top-1/2 left-1/2 z-10 w-52 -translate-x-1/2 -translate-y-1/2 text-center sm:w-auto sm:max-w-sm lg:max-w-lg">
         {children}
       </div>
 
