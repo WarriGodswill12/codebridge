@@ -114,7 +114,7 @@ export function PageTransition() {
     <div className="pointer-events-none fixed inset-0 z-90 overflow-hidden">
       <div
         ref={panelRef}
-        className="absolute inset-0 origin-bottom scale-y-0 border border-black bg-background"
+        className="absolute inset-0 origin-bottom scale-y-0 border-b border-black bg-background"
       />
     </div>,
     document.body

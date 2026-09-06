@@ -11,21 +11,30 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <ConvexAuthNextjsServerProvider>
       <AdminConvexProvider>
-        <div className="flex min-h-screen flex-1 bg-background text-foreground">
-          <aside className="sticky top-0 flex h-screen w-60 shrink-0 flex-col border-r border-border p-6">
-            <span className="font-display text-xl italic">Codebridge</span>
-            <span className="mt-1 text-xs font-medium tracking-widest text-muted-foreground uppercase">
-              Admin
-            </span>
+        <div className="flex min-h-screen flex-1 flex-col bg-background text-foreground lg:flex-row">
+          <aside className="flex flex-col gap-4 border-b border-border p-4 sm:p-6 lg:sticky lg:top-0 lg:h-screen lg:w-60 lg:shrink-0 lg:gap-0 lg:border-r lg:border-b-0 lg:p-6">
+            <div className="flex items-center justify-between lg:block">
+              <div>
+                <span className="font-display text-xl italic">Codebridge</span>
+                <span className="mt-1 block text-xs font-medium tracking-widest text-muted-foreground uppercase">
+                  Admin
+                </span>
+              </div>
+              <div className="lg:hidden">
+                <SignOutButton />
+              </div>
+            </div>
 
-            <AdminNav />
+            <div className="lg:mt-10">
+              <AdminNav />
+            </div>
 
-            <div className="mt-auto pt-6">
+            <div className="mt-auto hidden pt-6 lg:block">
               <SignOutButton />
             </div>
           </aside>
 
-          <main className="min-w-0 flex-1 p-8 lg:p-10">{children}</main>
+          <main className="min-w-0 flex-1 p-4 sm:p-6 lg:p-10">{children}</main>
         </div>
       </AdminConvexProvider>
     </ConvexAuthNextjsServerProvider>

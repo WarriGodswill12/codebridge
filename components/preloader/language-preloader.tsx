@@ -106,7 +106,7 @@ export function LanguagePreloader() {
     <div className="fixed inset-0 z-100 overflow-hidden">
       <div
         ref={panelRef}
-        className="absolute inset-0 flex items-center justify-center border border-black bg-background"
+        className="absolute inset-0 flex items-center justify-center border-b border-black bg-background"
       >
         <span
           ref={wordRef}

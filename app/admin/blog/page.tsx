@@ -10,7 +10,7 @@ export default async function AdminBlogPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <h1 className="font-display text-3xl italic">Blog</h1>
         <Button render={<Link href="/admin/blog/new" />} nativeButton={false}>
           New post
@@ -20,7 +20,7 @@ export default async function AdminBlogPage() {
       <div className="mt-8 flex flex-col divide-y divide-border rounded-2xl border border-border">
         {posts.length === 0 && <p className="p-6 text-sm text-muted-foreground">No posts yet.</p>}
         {posts.map((post) => (
-          <div key={post._id} className="flex items-center justify-between gap-4 p-4">
+          <div key={post._id} className="flex flex-wrap items-center justify-between gap-4 p-4">
             <div>
               <p className="font-medium">{post.title}</p>
               <p className="text-sm text-muted-foreground">

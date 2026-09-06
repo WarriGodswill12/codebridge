@@ -16,7 +16,7 @@ export function AdminNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="mt-10 flex flex-col gap-1">
+    <nav className="-mx-4 flex gap-1 overflow-x-auto px-4 pb-1 sm:-mx-6 sm:px-6 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0 lg:pb-0">
       {navLinks.map((link) => {
         const active =
           link.href === "/admin" ? pathname === "/admin" : pathname.startsWith(link.href);
@@ -25,7 +25,7 @@ export function AdminNav() {
             key={link.href}
             href={link.href}
             className={cn(
-              "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+              "shrink-0 rounded-lg px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors",
               active
                 ? "bg-foreground text-background"
                 : "text-muted-foreground hover:bg-secondary hover:text-foreground"
