@@ -6,6 +6,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import { blobCoverIn, blobRevealOut } from "@/lib/blob-wipe";
 
+function isAdminRoute(pathname: string) {
+  return pathname.startsWith("/admin") || pathname === "/signin";
+}
+
 /**
  * Reuses the language preloader's blob wipe as an in-app page transition:
  * intercept a same-origin link click, cover the viewport with the blob
@@ -46,6 +50,13 @@ export function PageTransition() {
       const destination = new URL(href, window.location.origin);
       if (destination.pathname === window.location.pathname) return;
 
+      // The admin dashboard and its sign-in page get plain, instant
+      // Next.js navigation — the blob wipe reads as marketing-site flair,
+      // out of place for an internal data-entry tool.
+      if (isAdminRoute(destination.pathname) || isAdminRoute(window.location.pathname)) {
+        return;
+      }
+
       const panel = panelRef.current;
       if (!panel || transitioningRef.current) return;
 
@@ -69,7 +80,13 @@ export function PageTransition() {
       return;
     }
     if (pathname === prevPathnameRef.current) return;
+    const previousPathname = prevPathnameRef.current;
     prevPathnameRef.current = pathname;
+
+    if (isAdminRoute(pathname) || isAdminRoute(previousPathname)) {
+      transitioningRef.current = false;
+      return;
+    }
 
     const panel = panelRef.current;
     if (!panel) return;

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { gsap } from "gsap";
@@ -34,6 +35,7 @@ function handleNavScramble(e: MouseEvent<HTMLAnchorElement>) {
 }
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -64,6 +66,8 @@ export function SiteHeader() {
 
     return () => ctx.revert();
   }, [open]);
+
+  if (pathname.startsWith("/admin") || pathname === "/signin") return null;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-[#f6f5ef] text-foreground">

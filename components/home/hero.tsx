@@ -91,7 +91,7 @@ export function Hero() {
   return (
     <div
       ref={rootRef}
-      className="relative flex flex-col items-center justify-center gap-6 overflow-hidden px-6 h-screen pt-16 pb-20 text-center sm:gap-8 sm:pt-24 sm:pb-28"
+      className="relative flex flex-col items-center justify-center gap-6 overflow-hidden px-6 h-screen pb-20 text-center sm:gap-8 sm:pt-24 sm:pb-28"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 blur-2xl">
         <HeroScene />

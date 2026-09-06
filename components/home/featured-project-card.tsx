@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import type { Doc } from "@/convex/_generated/dataModel";
@@ -5,13 +6,15 @@ import { Badge } from "@/components/ui/badge";
 import { projectIcons } from "@/lib/project-icons";
 import { cn } from "@/lib/utils";
 
+export type ProjectWithCover = Doc<"projects"> & { coverImageUrl: string | null };
+
 export function FeaturedProjectCard({
   project,
   className,
   imageClassName,
   ...props
 }: {
-  project: Doc<"projects">;
+  project: ProjectWithCover;
   className?: string;
   imageClassName?: string;
 } & Record<`data-${string}`, string | boolean | undefined>) {
@@ -29,14 +32,28 @@ export function FeaturedProjectCard({
           "relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl transition-transform duration-500 ease-out group-hover:scale-[0.98]",
           imageClassName
         )}
-        style={{
-          background: `linear-gradient(135deg, ${accent}, color-mix(in oklab, ${accent}, black 55%))`,
-        }}
+        style={
+          project.coverImageUrl
+            ? undefined
+            : {
+                background: `linear-gradient(135deg, ${accent}, color-mix(in oklab, ${accent}, black 55%))`,
+              }
+        }
       >
-        <Icon
-          className="size-16 text-white/25 transition-transform duration-500 ease-out group-hover:scale-110 sm:size-20"
-          strokeWidth={1.25}
-        />
+        {project.coverImageUrl ? (
+          <Image
+            src={project.coverImageUrl}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+        ) : (
+          <Icon
+            className="size-16 text-white/25 transition-transform duration-500 ease-out group-hover:scale-110 sm:size-20"
+            strokeWidth={1.25}
+          />
+        )}
       </div>
 
       <div className="mt-5 flex flex-wrap items-start justify-between gap-3">

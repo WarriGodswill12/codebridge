@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Sparkles } from "lucide-react";
@@ -60,14 +61,27 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
         </Link>
 
         <Reveal delay={0.05}>
-          <div
-            className="mt-8 flex aspect-[21/9] items-center justify-center overflow-hidden rounded-3xl"
-            style={{
-              background: `linear-gradient(135deg, ${accent}, color-mix(in oklab, ${accent}, black 55%))`,
-            }}
-          >
-            <Icon className="size-20 text-white/25 sm:size-28" strokeWidth={1.25} />
-          </div>
+          {project.coverImageUrl ? (
+            <div className="relative mt-8 aspect-[21/9] overflow-hidden rounded-3xl">
+              <Image
+                src={project.coverImageUrl}
+                alt={project.title}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 768px, 100vw"
+                priority
+              />
+            </div>
+          ) : (
+            <div
+              className="mt-8 flex aspect-[21/9] items-center justify-center overflow-hidden rounded-3xl"
+              style={{
+                background: `linear-gradient(135deg, ${accent}, color-mix(in oklab, ${accent}, black 55%))`,
+              }}
+            >
+              <Icon className="size-20 text-white/25 sm:size-28" strokeWidth={1.25} />
+            </div>
+          )}
         </Reveal>
 
         <Reveal delay={0.1}>

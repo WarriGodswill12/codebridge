@@ -2,18 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import { blogPosts, getBlogPost } from "@/lib/blog-posts";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 import { PostContent } from "@/components/blog/post-content";
-
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
-}
 
 export async function generateMetadata(
   props: PageProps<"/blog/[slug]">
 ): Promise<Metadata> {
   const { slug } = await props.params;
-  const post = getBlogPost(slug);
+  const post = await fetchQuery(api.posts.getBySlug, { slug });
 
   if (!post) return { title: "Insights" };
 
@@ -34,7 +31,7 @@ function formatDate(iso: string) {
 
 export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
   const { slug } = await props.params;
-  const post = getBlogPost(slug);
+  const post = await fetchQuery(api.posts.getBySlug, { slug });
 
   if (!post) notFound();
 

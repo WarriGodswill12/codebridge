@@ -1,11 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { Doc } from "@/convex/_generated/dataModel";
-import { FeaturedProjectCard } from "@/components/home/featured-project-card";
+import { FeaturedProjectCard, type ProjectWithCover } from "@/components/home/featured-project-card";
 import { cn } from "@/lib/utils";
 
-export function WorkExplorer({ projects }: { projects: Doc<"projects">[] }) {
+export function WorkExplorer({ projects }: { projects: ProjectWithCover[] }) {
   const tags = useMemo(() => {
     const set = new Set<string>();
     for (const project of projects) {

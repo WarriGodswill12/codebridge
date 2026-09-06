@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 import { PricingHero } from "@/components/pricing/pricing-hero";
 import { Pricing } from "@/components/home/pricing";
 import { Faq } from "@/components/home/faq";
@@ -10,11 +12,13 @@ export const metadata: Metadata = {
     "Fixed-price engagement tiers for web applications, from focused single-purpose builds to complex, multi-module platforms.",
 };
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const tiers = await fetchQuery(api.pricing.list, {});
+
   return (
     <main className="flex flex-1 flex-col">
       <PricingHero />
-      <Pricing />
+      <Pricing tiers={tiers} />
       <Faq />
       <FinalCta />
     </main>

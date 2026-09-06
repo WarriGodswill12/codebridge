@@ -1,5 +1,7 @@
 import { Check } from "lucide-react";
-import type { ContentBlock } from "@/lib/blog-posts";
+import type { Doc } from "@/convex/_generated/dataModel";
+
+type ContentBlock = Doc<"posts">["body"][number];
 
 export function PostContent({ blocks }: { blocks: ContentBlock[] }) {
   return (

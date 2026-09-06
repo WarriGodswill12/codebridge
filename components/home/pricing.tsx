@@ -6,56 +6,9 @@ import { Reveal, RevealGroup } from "@/components/motion/reveal";
 import { ScrambleIn } from "@/components/motion/scramble-in";
 import { SplitHeading } from "@/components/motion/split-heading";
 import { cn } from "@/lib/utils";
+import type { Doc } from "@/convex/_generated/dataModel";
 
-const tiers = [
-  {
-    name: "Starter",
-    price: "$3,000 – $8,000",
-    timeline: "3–6 weeks",
-    description: "For focused, well-defined problems.",
-    features: [
-      "Single-purpose web application",
-      "Up to 5 core screens or workflows",
-      "User authentication",
-      "Basic admin panel",
-      "Deployed, documented, and handed over",
-      "14-day post-launch support",
-    ],
-  },
-  {
-    name: "Growth",
-    price: "$8,000 – $20,000",
-    timeline: "6–12 weeks",
-    description: "For multi-feature products and platforms.",
-    featured: true,
-    features: [
-      "Full multi-user web application",
-      "Up to 15 screens or workflows",
-      "Roles & permissions system",
-      "Third-party integrations (payments, APIs)",
-      "Full admin & reporting dashboard",
-      "OWASP security review included",
-      "30-day post-launch support",
-    ],
-  },
-  {
-    name: "Scale",
-    price: "$20,000 – $50,000+",
-    timeline: "10–20 weeks",
-    description: "For complex systems and enterprise workflows.",
-    features: [
-      "Complex, multi-module platform",
-      "Unlimited screens and workflows",
-      "Custom AI or ML feature development",
-      "Data pipelines and external integrations",
-      "Full security audit & penetration test",
-      "Infrastructure setup and hardening",
-      "60-day post-launch support",
-    ],
-  },
-];
-
-export function Pricing() {
+export function Pricing({ tiers }: { tiers: Doc<"pricingTiers">[] }) {
   return (
     <section className="bg-background px-6 py-20 text-foreground sm:py-28 lg:px-10">
       <div className="mx-auto max-w-7xl">
@@ -78,7 +31,7 @@ export function Pricing() {
         <RevealGroup className="mt-14 grid gap-6 lg:grid-cols-3" y={36}>
           {tiers.map((tier) => (
             <div
-              key={tier.name}
+              key={tier._id}
               data-reveal-item
               className={cn(
                 "relative flex flex-col rounded-2xl p-8",

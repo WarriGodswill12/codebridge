@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import type { BlogPost } from "@/lib/blog-posts";
+import type { Doc } from "@/convex/_generated/dataModel";
 import { Reveal, RevealGroup } from "@/components/motion/reveal";
 
 function formatDate(iso: string) {
@@ -12,7 +12,7 @@ function formatDate(iso: string) {
   });
 }
 
-export function PostList({ posts }: { posts: BlogPost[] }) {
+export function PostList({ posts }: { posts: Doc<"posts">[] }) {
   const [featured, ...rest] = posts;
   if (!featured) return null;
 

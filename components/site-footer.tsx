@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight, Globe } from "lucide-react";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal, RevealGroup } from "@/components/motion/reveal";
@@ -23,6 +26,9 @@ const featuredWork = [
 ];
 
 export function SiteFooter() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/admin") || pathname === "/signin") return null;
+
   return (
     <footer className="relative overflow-hidden bg-primary text-primary-foreground">
       <div className="mx-auto w-full max-w-7xl px-6 pt-10 pb-8 lg:px-10">

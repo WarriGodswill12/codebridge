@@ -1,3 +1,5 @@
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 import { Hero } from "@/components/home/hero";
 import { About } from "@/components/home/about";
 import { WorkShowcase } from "@/components/home/work-showcase";
@@ -21,7 +23,9 @@ import { LanguagePreloader } from "@/components/preloader/language-preloader";
 // (Pricing) -> objection handling (Faq) -> final CTA (FinalCta, then
 // Footer). Faq sits before FinalCta so it catches doubts right before
 // the final ask instead of leaving them unanswered.
-export default function Home() {
+export default async function Home() {
+  const tiers = await fetchQuery(api.pricing.list, {});
+
   return (
     <main className="flex flex-1 overflow-x-hidden flex-col">
       <LanguagePreloader />
@@ -37,7 +41,7 @@ export default function Home() {
       </div>
       <WhatWeBuild />
       <Testimonials />
-      <Pricing />
+      <Pricing tiers={tiers} />
       <Faq />
       <FinalCta />
     </main>
