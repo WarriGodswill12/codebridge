@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { SmoothScrollProvider } from "@/components/motion/smooth-scroll-provider";
+import { PageTransition } from "@/components/motion/page-transition";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           aria-hidden
           className="pointer-events-none fixed inset-0 -z-10 bg-(--page-background)"
         />
+        <PageTransition />
         <ConvexClientProvider>
           <SiteHeader />
           <SmoothScrollProvider>

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { gsap } from "gsap";
 import { PRELOADER_DONE_EVENT } from "@/lib/preloader-state";
+import { blobRevealOut } from "@/lib/blob-wipe";
 
 const greetings = [
   "Hello",
@@ -59,8 +60,6 @@ export function LanguagePreloader() {
     const panel = panelRef.current;
     if (!word || !panel) return;
 
-    gsap.set(panel, { transformOrigin: "50% 0%" });
-
     const tl = gsap.timeline({ onComplete: finish });
 
     greetings.forEach((greeting, i) => {
@@ -86,16 +85,8 @@ export function LanguagePreloader() {
     // edge — shaped into an organic blob rather than a straight line —
     // rises up to meet it, so the whole thing reads as being pulled
     // out through the top rather than shrinking away in the center.
-    tl.to(panel, {
-      borderRadius: "0% 0% 58% 42% / 0% 0% 92% 100%",
-      duration: 0.3,
-      ease: "power2.inOut",
-    }).to(panel, {
-      scaleY: 0,
-      borderRadius: "0% 0% 50% 50% / 0% 0% 45% 45%",
-      duration: 0.65,
-      ease: "power3.in",
-    });
+    // Shared with the in-app page-transition wipe, see lib/blob-wipe.ts.
+    tl.add(blobRevealOut(panel));
 
     return () => {
       tl.kill();
