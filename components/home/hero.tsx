@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { gsap } from "gsap";
@@ -13,10 +12,6 @@ import { PRELOADER_DONE_EVENT } from "@/lib/preloader-state";
 if (typeof window !== "undefined") {
   gsap.registerPlugin(SplitText);
 }
-
-const HeroScene = dynamic(() => import("./hero-scene").then((m) => m.HeroScene), {
-  ssr: false,
-});
 
 export function Hero() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -93,10 +88,6 @@ export function Hero() {
       ref={rootRef}
       className="relative flex flex-col items-center justify-center gap-6 overflow-hidden px-6 h-screen pb-20 text-center sm:gap-8 sm:pt-24 sm:pb-28"
     >
-      <div aria-hidden className="pointer-events-none absolute inset-0 blur-2xl">
-        <HeroScene />
-      </div>
-
       <h1
         ref={headingRef}
         className="relative max-w-4xl font-display text-3xl leading-[1.15] font-medium text-balance sm:text-5xl lg:text-7xl"
