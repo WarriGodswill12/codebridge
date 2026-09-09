@@ -90,7 +90,7 @@ export function Hero() {
     >
       <h1
         ref={headingRef}
-        className="relative max-w-4xl font-display text-3xl leading-[1.15] font-medium text-balance sm:text-5xl lg:text-7xl"
+        className="relative max-w-4xl font-display text-3xl leading-[1.15] font-medium text-balance sm:text-5xl lg:text-5xl"
       >
         Codebridge is a <em className="font-display italic">design</em> and{" "}
         <em className="font-display italic">engineering</em> studio that builds
