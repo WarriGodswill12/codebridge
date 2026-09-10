@@ -19,9 +19,7 @@ export function WhoWeServe() {
 
         <SplitHeading delay={0.1}>
           <h2 className="mt-6 font-display text-2xl leading-[1.45] text-balance sm:text-3xl lg:text-4xl">
-            We build reliable software for <em className="italic">founders moving fast</em>,{" "}
-            <em className="italic">operators outgrowing spreadsheets</em>, and{" "}
-            <em className="italic">teams on real deadlines</em>. No enterprise overhead.
+            We build reliable software for founders moving fast, operators outgrowing spreadsheets, and teams on real deadlines. No enterprise overhead.
           </h2>
         </SplitHeading>
       </div>
