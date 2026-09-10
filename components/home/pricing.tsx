@@ -88,11 +88,11 @@ export function Pricing({ tiers }: { tiers: Doc<"pricingTiers">[] }) {
                 ))}
               </ul>
 
-              <Magnetic className="mt-8 inline-block w-fit">
+              <Magnetic className="mt-8 block w-full sm:inline-block sm:w-fit">
                 <Button
                   render={<Link href="/contact" />}
                   nativeButton={false}
-                  className="h-11 w-fit gap-2 rounded-full px-6 text-xs font-semibold tracking-widest uppercase"
+                  className="h-11 w-full justify-center gap-2 rounded-full px-6 text-xs font-semibold tracking-widest whitespace-normal uppercase sm:w-fit sm:whitespace-nowrap"
                 >
                   Book a call about this plan
                   <ArrowUpRight className="size-4" />
