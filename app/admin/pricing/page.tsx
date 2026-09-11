@@ -12,14 +12,24 @@ export default async function AdminPricingPage() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl italic">Pricing</h1>
+      <p className="text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase">
+        Content
+      </p>
+      <h1 className="mt-2 font-display text-3xl italic">Pricing</h1>
       <p className="mt-2 text-muted-foreground">
-        These tiers appear on the homepage and the Pricing page, in order.
+        These tiers appear on the homepage and the Pricing page, in this order.
       </p>
 
       <div className="mt-8 flex flex-col gap-4">
         {tiers.map((tier) => (
-          <div key={tier._id} className="flex flex-col gap-4 rounded-2xl border border-border p-6">
+          <div
+            key={tier._id}
+            className={
+              tier.featured
+                ? "flex flex-col gap-4 rounded-2xl border-2 border-primary p-6"
+                : "flex flex-col gap-4 rounded-2xl border border-border p-6"
+            }
+          >
             <form id={`tier-form-${tier._id}`} action={saveTier} className="flex flex-col gap-4">
               <input type="hidden" name="id" value={tier._id} />
               <div className="grid gap-4 sm:grid-cols-4">

@@ -1,3 +1,4 @@
+import { query } from "./_generated/server";
 import type { QueryCtx, MutationCtx } from "./_generated/server";
 
 /**
@@ -12,3 +13,12 @@ export async function requireAdmin(ctx: QueryCtx | MutationCtx) {
   }
   return identity;
 }
+
+/** The signed-in admin's own email, for display in the admin shell — null when signed out. */
+export const whoAmI = query({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    return identity?.email ?? null;
+  },
+});

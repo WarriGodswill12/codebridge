@@ -12,17 +12,23 @@ export default async function AdminServicesPage() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl italic">Services</h1>
+      <p className="text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase">
+        Content
+      </p>
+      <h1 className="mt-2 font-display text-3xl italic">Services</h1>
       <p className="mt-2 text-muted-foreground">
-        These appear on the Services page, in order.
+        These appear on the Services page, in this order.
       </p>
 
       <div className="mt-8 flex flex-col gap-4">
-        {services.map((service) => (
+        {services.map((service, i) => (
           <div key={service._id} className="flex flex-col gap-4 rounded-2xl border border-border p-6">
             <form id={`service-form-${service._id}`} action={saveService} className="flex flex-col gap-4">
               <input type="hidden" name="id" value={service._id} />
-              <div className="grid gap-4 sm:grid-cols-[1fr_auto]">
+              <div className="grid gap-4 sm:grid-cols-[auto_1fr_auto]">
+                <span className="hidden self-center font-mono text-sm text-muted-foreground sm:block">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <div className="flex flex-col gap-2">
                   <Label htmlFor={`title-${service._id}`}>Title</Label>
                   <Input id={`title-${service._id}`} name="title" defaultValue={service.title} required />
