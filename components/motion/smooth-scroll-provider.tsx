@@ -83,9 +83,11 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     };
   }, [pathname]);
 
+  const isAdmin = pathname.startsWith("/admin");
+
   return (
     <div id="smooth-wrapper">
-      <div id="smooth-content" className="pt-(--header-height)">
+      <div id="smooth-content" className={isAdmin ? undefined : "pt-(--header-height)"}>
         {children}
       </div>
     </div>
