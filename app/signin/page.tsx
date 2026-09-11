@@ -2,10 +2,12 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import mark from "@/public/codebridge-mark-icon.png";
 
 export default function SignInPage() {
   const { signIn } = useAuthActions();
@@ -32,8 +34,8 @@ export default function SignInPage() {
     <main className="flex min-h-screen flex-1 bg-background text-foreground">
       <div className="hidden flex-1 flex-col justify-between bg-foreground p-12 text-background lg:flex">
         <div className="flex items-center gap-2.5">
-          <span className="flex size-8 items-center justify-center rounded-md bg-primary font-display text-base text-primary-foreground italic">
-            C
+          <span className="flex size-8 items-center justify-center rounded-md bg-background p-1">
+            <Image src={mark} alt="Codebridge" className="h-full w-full object-contain" priority />
           </span>
           <span className="font-display text-lg">Codebridge</span>
         </div>
