@@ -3,6 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  LayoutDashboard,
+  Inbox,
+  Briefcase,
+  Sparkles,
+  Tag,
+  Newspaper,
+  type LucideIcon,
+} from "lucide-react";
+import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -11,18 +20,24 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-const navGroups = [
+type NavLink = { href: string; label: string; icon: LucideIcon };
+
+const navGroups: { label: string; links: NavLink[] }[] = [
   {
     label: "Overview",
-    links: [{ href: "/admin", label: "Overview" }],
+    links: [{ href: "/admin", label: "Overview", icon: LayoutDashboard }],
+  },
+  {
+    label: "Leads",
+    links: [{ href: "/admin/enquiries", label: "Enquiries", icon: Inbox }],
   },
   {
     label: "Content",
     links: [
-      { href: "/admin/case-studies", label: "Case studies" },
-      { href: "/admin/services", label: "Services" },
-      { href: "/admin/pricing", label: "Pricing" },
-      { href: "/admin/blog", label: "Blog" },
+      { href: "/admin/case-studies", label: "Case studies", icon: Briefcase },
+      { href: "/admin/services", label: "Services", icon: Sparkles },
+      { href: "/admin/pricing", label: "Pricing", icon: Tag },
+      { href: "/admin/blog", label: "Blog", icon: Newspaper },
     ],
   },
 ];
@@ -40,10 +55,12 @@ export function AdminNav() {
               {group.links.map((link) => {
                 const active =
                   link.href === "/admin" ? pathname === "/admin" : pathname.startsWith(link.href);
+                const Icon = link.icon;
                 return (
                   <SidebarMenuItem key={link.href}>
                     <SidebarMenuButton isActive={active} render={<Link href={link.href} />}>
-                      {link.label}
+                      <Icon />
+                      <span>{link.label}</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );
