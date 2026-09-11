@@ -48,6 +48,7 @@ export default async function AdminOverviewPage() {
           caption="Unread"
           linkLabel="View all"
           href="/admin/enquiries"
+          tint="bg-primary/10 text-primary"
         />
         <StatCard
           label="Published posts"
@@ -56,6 +57,7 @@ export default async function AdminOverviewPage() {
           caption="Live"
           linkLabel="Manage"
           href="/admin/blog"
+          tint="bg-blue-500/10 text-blue-600"
         />
         <StatCard
           label="Case studies"
@@ -64,6 +66,7 @@ export default async function AdminOverviewPage() {
           caption={`${featuredCount} featured`}
           linkLabel="Manage"
           href="/admin/case-studies"
+          tint="bg-violet-500/10 text-violet-600"
         />
         <StatCard
           label="Services"
@@ -72,11 +75,12 @@ export default async function AdminOverviewPage() {
           caption="Listed"
           linkLabel="Manage"
           href="/admin/services"
+          tint="bg-amber-500/10 text-amber-600"
         />
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="rounded-2xl border border-border bg-card">
+        <div className="rounded-2xl border border-border bg-card shadow-sm shadow-black/3">
           <div className="flex items-center justify-between border-b border-border px-5 py-4">
             <h3 className="font-medium">Recent enquiries</h3>
             <Link href="/admin/enquiries" className="text-xs text-muted-foreground hover:text-foreground">
@@ -102,7 +106,7 @@ export default async function AdminOverviewPage() {
           )}
         </div>
 
-        <div className="rounded-2xl border border-border bg-card">
+        <div className="rounded-2xl border border-border bg-card shadow-sm shadow-black/3">
           <div className="flex items-center justify-between border-b border-border px-5 py-4">
             <h3 className="font-medium">Recent posts</h3>
             <Link href="/admin/blog" className="text-xs text-muted-foreground hover:text-foreground">
@@ -124,7 +128,7 @@ export default async function AdminOverviewPage() {
         </div>
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-card">
+      <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-card shadow-sm shadow-black/3">
         <div className="flex items-center justify-between border-b border-border px-5 py-4">
           <h3 className="font-medium">Case studies</h3>
           <Link href="/admin/case-studies" className="text-xs text-muted-foreground hover:text-foreground">

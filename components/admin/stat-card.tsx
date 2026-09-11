@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function StatCard({
   label,
@@ -8,6 +9,7 @@ export function StatCard({
   caption,
   linkLabel,
   href,
+  tint = "bg-secondary text-muted-foreground",
 }: {
   label: string;
   value: number;
@@ -15,15 +17,16 @@ export function StatCard({
   caption: string;
   linkLabel: string;
   href: string;
+  tint?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-5">
+    <div className="rounded-2xl border border-border bg-card p-5 shadow-sm shadow-black/3">
       <div className="flex items-start justify-between gap-3">
         <span className="text-xs font-medium tracking-[0.1em] text-muted-foreground uppercase">
           {label}
         </span>
-        <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-secondary">
-          <Icon className="size-4 text-muted-foreground" strokeWidth={1.8} />
+        <span className={cn("flex size-8 shrink-0 items-center justify-center rounded-lg", tint)}>
+          <Icon className="size-4" strokeWidth={1.8} />
         </span>
       </div>
 
